@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Global gateway map</title>
+    <link rel="stylesheet" href="css/languages.min.css">
+    <link rel="stylesheet" href="css/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <script src="js/jquery.min.js"></script>
+    <script src="js/bootstrap.min.js""></script>
+    <script src="js/d3.min.js"></script>
+    <script src="js/topojson.min.js"></script>
+    <script src="js/datamaps.all.min.js"></script>
+    <script src="js/angular.min.js"></script>
+    <script src="js/gateway_map.js"></script>
+</head>
+<body>
+
+<div ng-app="gatewayMapApp" align="center">
+    <div id="modal-content" class="modal fade" tabindex="-1" role="dialog">
+        <div class="modal-dialog">
+            <div style="max-width: 300px;" class="modal-content">
+                <div class="modal-header"></div>
+                <div class="modal-body"></div>
+            </div>
+        </div>
+    </div>
+    <input placeholder="Country" style="width: 80%; margin: 20px;"  class="form-control input-lg" ng-model="inputData" ng-change="updateInputData()" ng-model-options="{debounce:1000}">
+    <div id="mapContainer" style="width: 80%; height: 500px; margin: 20px;"></div>
+    <div ng-repeat="(region, countries) in countryList">
+        <div style="width: 80%;" align="left" ng-if="region"><b>{{region}}</b></div>
+        <div style="width: 80%;" align="left">
+            <a href="#" ng-repeat="country in countries"> {{ country.name }} - <span ng-repeat="lang in country.languages">{{ language[lang].nativeName }}&nbsp;</span> | </a>
+        </div>
+    </div>
+</div>
+</body>
+</html>
+
